@@ -1,5 +1,5 @@
 {% set name = "mapbox_earcut" %}
-{% set version = "1.0.3" %}
+{% set version = "2.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: b6bac5d519d9947a6321a699c15d58e0b5740da61b9210ed229e05ad207c1c04
+  sha256: 81eab6b86cf99551deb698b98e3f7502c57900e5c479df15e1bdaf1a57f0f9d6
 
 build:
-  number: 2
+  number: 0
   script: "{{ PYTHON }} -m pip install -vv ."
   skip: true  # [python_impl == 'pypy']
   skip: true  # [py<39]
@@ -33,6 +33,7 @@ requirements:
     - pip
     - pybind11
     - scikit-build-core
+    - nanobind
   run:
     - python
     - {{ pin_compatible('libgd') }}
