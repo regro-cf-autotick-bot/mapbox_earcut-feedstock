@@ -1,0 +1,37 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -25,16 +25,24 @@
+ )
+ target_include_directories(_core PRIVATE include)
+ 
+-nanobind_add_stub(
+-  mapbox_earcut_stubs
+-  MODULE _core
+-  OUTPUT _core.pyi
+-  PYTHON_PATH $<TARGET_FILE_DIR:_core>
+-  DEPENDS _core
+-  MARKER_FILE py.typed
+-)
++# Stub generation requires importing the freshly built _core extension
++# module, which only works when the host can run binaries built for the
++# target platform. That is not the case when cross-compiling (e.g. building
++# linux-aarch64/ppc64le wheels on an x86_64 host), so skip it there.
++if(NOT CMAKE_CROSSCOMPILING)
++  nanobind_add_stub(
++    mapbox_earcut_stubs
++    MODULE _core
++    OUTPUT _core.pyi
++    PYTHON_PATH $<TARGET_FILE_DIR:_core>
++    DEPENDS _core
++    MARKER_FILE py.typed
++  )
++endif()
+ 
+ install(TARGETS _core LIBRARY DESTINATION mapbox_earcut)
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/_core.pyi DESTINATION mapbox_earcut)
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/py.typed DESTINATION mapbox_earcut)
++if(NOT CMAKE_CROSSCOMPILING)
++  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/_core.pyi DESTINATION mapbox_earcut)
++  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/py.typed DESTINATION mapbox_earcut)
++endif()
+ install(FILES mapbox_earcut/__init__.py DESTINATION mapbox_earcut)
