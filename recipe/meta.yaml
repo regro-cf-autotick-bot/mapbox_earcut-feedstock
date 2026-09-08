@@ -6,13 +6,13 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 81eab6b86cf99551deb698b98e3f7502c57900e5c479df15e1bdaf1a57f0f9d6
   patches:
     - patches/skip-stub-generation-when-cross-compiling.patch
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install -vv ."
   skip: true  # [python_impl == 'pypy' or py<39]
 
