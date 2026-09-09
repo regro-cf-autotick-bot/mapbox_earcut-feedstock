@@ -274,4 +274,5 @@ Feedstock Maintainers
 * [@ChrisBarker-NOAA](https://github.com/ChrisBarker-NOAA/)
 * [@JamesMakela-NOAA](https://github.com/JamesMakela-NOAA/)
 * [@jay-hennen](https://github.com/jay-hennen/)
+* [@pb01ka](https://github.com/pb01ka/)
 
