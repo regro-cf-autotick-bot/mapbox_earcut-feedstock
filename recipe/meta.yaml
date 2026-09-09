@@ -1,13 +1,13 @@
 {% set name = "mapbox_earcut" %}
-{% set version = "2.0.0" %}
+{% set version = "2.1.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 81eab6b86cf99551deb698b98e3f7502c57900e5c479df15e1bdaf1a57f0f9d6
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: fb0c1e43581a635bbaabf4a5149009014d370c515816c4d5a7d8118477f28d48
   patches:
     - patches/skip-stub-generation-when-cross-compiling.patch
 
